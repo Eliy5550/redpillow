@@ -1,86 +1,71 @@
-<!DOCTYPE html>
-<html>
 <?php
-
-session_start();
-
-if(isset($_SESSION['user_name'])){
-	header('Location: http://localhost/red-pillow/feed.php');
-}
-
-include('connect.php');
+include('start.php');
 
 ?>
-<head>
-<title>Red-Pillow | Log In</title>
-<link href='index.css' rel='stylesheet'>
-</head>
 
-<body>
 
-<div id='top'>
-<h1>Red Pillow</h1>
-<small>Memes , Videos , Gifs and FUN!</small>
+
+<div id='main'>
+
+<div id='welcome'>
+<h2>Welcome to <span id='red'>Red-Pillow</span></h2><br>
+<p>Remember ,<br> A day without a meme -<br> is a wasted day.</p><br>
+<p>So what are you waiting for?</p><br>
+<p>Here on Red-Pillow you can <a id='red' href='upload.php'>upload</a> and <a id='red' href='memes.php'>watch</a>
+the best memes on the internet.<br> If you have a great
+idea for a new meme,<br> just upload it here and 
+people will decide if it's good enough to become
+popular by liking it.</p><br>
+<p>Create a new profile and become a meme creator today!</p>
 </div>
 
-<div id='center_wrap'>
-<a href='signup.php'><button class='inline' id='signup_button'><h2>Sign Up<h2></button></a>
-
-<div id='login' class='inline'>
-<h2>Log in</h2><br>
-<form action='index.php' method='post'>
-<input value='<?php
-if($_SERVER['REQUEST_METHOD']=='POST'){echo $_POST['username'];}?>
-'autocomplete='off' type='text' name='username' placeholder='Username'><br><br>
-<input autocomplete='off' type='password' name='password' placeholder='Password'>
-<br><br><div style='height:0px;'><input id='submit_button' type='submit' value='Log In'></div>
-</form><br>
-</div>
-
-<div id='errors'>
-<?php
-if($_SERVER['REQUEST_METHOD']=='POST'){
-	if( empty($_POST['username'] )){
-		echo "* Username is missing!<br>";
+<div id='signup'>
+	<h2>Become a meme creator...</h2>
+	<h3 style='padding:10px;' id='red'>Sign up:</h3><br>
+	<form action='index.php' method='post'>
+	<input name='user_name' placeholder='User Name' type='text'><br><br>
+	<input name='email' placeholder='Email' type='text'><br><br>
+	<input name='pass' placeholder='Password' type='password'>	<br><br>
+	<input type='submit' value='Signup'>
+	</form>
+	<?php
+	
+	if($_SERVER['REQUEST_METHOD'] == "POST"){
+	//Form data
+	$user_name = $_POST['user_name'];
+	$email = $_POST['email'];
+	$pass = $_POST['pass'];
+	
+	//Insert to table
+	$sql = "insert into users (user_name , email , pass)
+	value( ? , ? , ? )";
+	$stmt = $connect->prepare($sql);
+	$stmt->bind_param('sss' , $user_name , $email , $pass);
+	
+	//If ok move to the ok/login page
+	if($stmt->execute()){
+		echo "<br>You are now registered! <br><a href='login'>Login</a>.";
+	}else{
+		echo "<br>Something went wrong!<br>
+		Try another username or email.";
 	}
-	if( empty($_POST['password'] )){
-		echo "* Password is missing!<br>";
+	
 	}
-	
-	
-	$username = $_POST['username'];
-	$password = $_POST['password'];
-	
-	$sql = "SELECT * FROM users where 
-	user_name='$username' AND 
-	pass='$password'";
-	
-	$res = $c->query($sql);
-	
-	
-	if($res->num_rows > 0){
-		echo "Connected!";
-		while($row = $res->fetch_assoc()){
-			$_SESSION['user_name'] = $row['user_name'];
-			$_SESSION['user_id'] = $row['id'];
-			$_SESSION['email'] = $row['email'];
-			header('Location: http://localhost/red-pillow/feed.php');
-		}
-	}else if($res->num_rows == 0 && $password != ""){
-		echo "Wrong Username / Password !";
-	}
-}
-
-?>
-</div>
+	?>
 </div>
 
+</div>
 <br>
-
-<div id='end'>
-<h3>Memes are love.<br>Memes are life.</h3>
-</div>
-
+<a id='memeslink' href='memes.php'>Click for memes</a>
+<br>
+<br>
+<br>
+<br>
 </body>
 
 </html>
+
+
+
+
+

@@ -1,0 +1,138 @@
+*{
+	margin:0;
+	padding:0;
+	font-family:Verdana , Arial;
+}
+body{
+	text-align:center;
+	color:#2b2b2b;	
+}
+#top{
+	padding:30px;
+	text-align:left;
+	background: linear-gradient(to right , #b20000 , #424242);
+	color:white;
+}
+#main{
+	padding:30px;
+}
+#welcome , #signup{
+	text-align:left;
+	padding:30px;
+	width:30%;
+	line-height:30px;
+	font-size:22px;
+	display:inline-block;
+	vertical-align:middle;
+	transition:0.3s;
+	border-top: 10px solid lightgrey;
+	box-shadow: 0px 10px 20px lightgrey;
+	margin-right:10px;
+	margin-left:10px;
+}
+#red{
+	color:#ce0000;
+}
+
+a{
+	color:#2b2b2b;
+}
+#memeslink{
+	color:green;
+	width:300px;
+	margin:auto;
+	padding:30px;
+	background-color:#396d4b;
+	transition:0.3s;
+	color:white;
+	border-radius:10px;
+	font-size:22px;
+	font-weight:bold;
+	display:block;
+	text-decoration:none;
+}
+#memeslink:hover{
+	width:300px;
+	margin:auto;
+	padding:30px;
+	background-color:#46a366;
+	transition:0.3s;
+}
+#navbar{
+	border-top:2px solid lightgrey;
+	border-bottom:2px solid lightgrey;
+	width:500px;
+	background-color:white;
+	margin:auto;
+	margin-top:10px;
+}
+.nav{
+	display:inline-block;
+	text-decoration:none;
+	padding:30px;
+	font-weight:bold;
+	transition:0.3s;
+	
+}
+.nav:hover{
+	background-color:#f2f2f2;
+}
+
+#meme_cats{
+	float:left;
+	text-align:center;
+	background-color:white;
+	position:fixed;
+	left:-1px;
+	border:1px solid lightgrey;
+}
+#meme_cats a{
+	display:block;
+	padding:20px;
+	text-decoration:none;
+	
+}
+#meme_cats a:hover{
+	background-color:#f2f2f2;
+}
+.meme{
+	width:40%;
+	margin-left:20%;
+	text-align:left;
+	padding:30px;
+	border:1px solid lightgrey;
+	border-collapse:collapse;
+}
+.meme small{
+	float:right;
+}
+.pic{
+	max-width:90%;
+	max-height:500px;
+}
+.ts{
+	color:grey;
+}
+input , select , option{
+	font-size:22px;
+	padding:10px;
+	border:none;
+	border-bottom:5px solid lightgrey;
+	outline:0;
+}
+input:focus , select:focus , option:focus{
+	box-shadow:0px 0px 10px lightgrey;
+}
+button{
+	outline:0;
+	border:none;
+}
+button:hover{
+	outline:0;
+	border:none;
+	background-color:red;
+}
+
+
+
+
